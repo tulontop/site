@@ -1,0 +1,105 @@
+:root {
+    --outline: rgb(32, 32, 38);
+    --inline: rgb(60, 55, 75);
+    --accent: rgb(155, 125, 175);
+    --high_contrast: rgb(41, 41, 55);
+    --low_contrast: rgb(35, 35, 47);
+    --text: rgb(180, 180, 180);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--low_contrast);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: monospace;
+}
+
+.splash_screen {
+    text-align: center;
+    background-color: var(--high_contrast);
+    border: 1px solid var(--outline);
+    padding: 5px;
+    box-shadow: 0 0px 10px var(--outline);
+    max-width: 320px;
+}
+
+.password_input {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--low_contrast);
+    color: var(--text);
+    border: 1px solid var(--inline);
+    padding: 5px;
+    font-family: monospace;
+    margin: 0 auto 5px auto;
+    text-align: center;
+}
+
+.password_input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.enter_btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--accent);
+    color: var(--text);
+    border: 1px solid var(--inline);
+    padding: 1px;
+    font-family: monospace;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.enter_btn:hover {
+    background-color: var(--inline);
+}
+
+.main_content {
+    display: none;
+}
+
+.center_box {
+    text-align: center;
+    background-color: var(--high_contrast);
+    border: 1px solid var(--outline);
+    padding: 5px;
+    box-shadow: 0 0px 10px var(--outline);
+    max-width: 320px;
+}
+
+.main_image {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    border: 1px solid var(--inline);
+    margin-bottom: 0;
+}
+
+.main_btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--accent);
+    color: var(--text);
+    border: 1px solid var(--inline);
+    padding: 1px;
+    font-family: monospace;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.main_btn:hover {
+    background-color: var(--inline);
+}

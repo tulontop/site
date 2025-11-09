@@ -41,10 +41,13 @@ function set_random_image() {
 
 function set_random_audio() {
     if (songs.length === 0) return;
+
     const random_index = Math.floor(Math.random() * songs.length);
     audio.src = songs[random_index];
+    audio.volume = 0.3;
     audio.play().catch(e => console.log('Audio play failed:', e));
 }
+
 
 function check_password() {
     const check_string = password_input.value;
@@ -85,3 +88,4 @@ function ban() {
 
 password_input.addEventListener('keypress', handle_key_press);
 enter_btn.addEventListener('click', check_password);
+

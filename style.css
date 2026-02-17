@@ -14,21 +14,33 @@
 }
 
 body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
     background-color: var(--low_contrast);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     font-family: monospace;
 }
 
+.captcha_screen,
+.splash_screen,
+.main_content {
+    position: absolute;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+}
+
 .captcha_screen {
+    display: flex;
     text-align: center;
     background-color: var(--high_contrast);
     border: 1px solid var(--outline);
     padding: 4px;
     box-shadow: 0 0px 10px var(--outline);
     max-width: 320px;
+    width: max-content;
+    height: max-content;
+    margin: auto;
 }
 
 .captcha_screen #recaptcha_widget {
@@ -42,12 +54,16 @@ body {
 }
 
 .splash_screen {
+    display: none;
     text-align: center;
     background-color: var(--high_contrast);
     border: 1px solid var(--outline);
     padding: 5px;
     box-shadow: 0 0px 10px var(--outline);
     max-width: 320px;
+    width: max-content;
+    height: max-content;
+    margin: auto;
 }
 
 .password_input {
@@ -87,6 +103,10 @@ body {
 
 .main_content {
     display: none;
+}
+
+.main_content .center_box {
+    margin: auto;
 }
 
 .center_box {

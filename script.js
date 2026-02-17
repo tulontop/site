@@ -6,7 +6,7 @@ const audio = document.getElementById('background_music');
 const captcha_screen = document.getElementById('captcha_screen');
 const splash_screen = document.getElementById('splash_screen');
 const main_content = document.getElementById('main_content');
-const j = "tul";
+const correct_password = "tul";
 const password_input = document.getElementById('password_input');
 const enter_btn = document.getElementById('enter_btn');
 const main_image = document.querySelector('.main_image');
@@ -85,7 +85,7 @@ function set_random_audio() {
 
 function check_password() {
     const input = password_input.value;
-    if (input === j) { unlock();
+    if (input === correct_password) { unlock();
     } else if (input === secret_password) {
         password_input.value = "";
         password_input.placeholder = "nice inspect element";

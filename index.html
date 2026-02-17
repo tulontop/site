@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tul</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
+    <div id="captcha_screen" class="captcha_screen">
+        <div id="recaptcha_widget"></div>
+    </div>
+
     <div id="splash_screen" class="splash_screen">
         <input type="password" class="password_input" id="password_input" placeholder="password">
         <button class="enter_btn" id="enter_btn">enter</button>
@@ -15,7 +20,11 @@
     <div id="main_content" class="main_content">
         <div class="center_box">
             <img src="https://media.discordapp.net/attachments/1241192056882200690/1365761357747716230/catesp.gif?ex=689ed822&is=689d86a2&hm=8b32018b8a44bd53523df62bf4f75b84649531a6b54dad56a381b30d984394c7&=&width=300&height=300" alt="Main Image" class="main_image">
-            <button class="main_btn" onclick="window.open('https://discord.gg/qNmMXRETJ3', '_blank')"> discord </button>
+            <div class="link_buttons">
+                <button class="main_btn" onclick="window.open('https://discord.com/users/1303818744296116246', '_blank')">discord</button>
+                <button class="main_btn" onclick="window.open('https://t.me/on36px', '_blank')">telegram</button>
+                <button class="main_btn" onclick="window.open('https://www.youtube.com/@heytull', '_blank')">youtube</button>
+            </div>
         </div>
     </div>
 
@@ -23,8 +32,6 @@
         your browser does not support the audio element
     </audio>
 
-
     <script src="script.js"></script>
 </body>
 </html>
-

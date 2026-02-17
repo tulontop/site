@@ -22,6 +22,25 @@ body {
     font-family: monospace;
 }
 
+.captcha_screen {
+    text-align: center;
+    background-color: var(--high_contrast);
+    border: 1px solid var(--outline);
+    padding: 4px;
+    box-shadow: 0 0px 10px var(--outline);
+    max-width: 320px;
+}
+
+.captcha_screen #recaptcha_widget {
+    display: flex;
+    justify-content: center;
+    margin: 0 -2px -2px 0;
+}
+
+.captcha_screen iframe {
+    margin: 0;
+}
+
 .splash_screen {
     text-align: center;
     background-color: var(--high_contrast);
@@ -87,17 +106,22 @@ body {
     margin-bottom: 0;
 }
 
-.main_btn {
-    display: block;
-    width: 100%;
+.link_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
     max-width: 300px;
+    margin: 0 auto;
+}
+
+.main_btn {
+    flex: 1;
     background-color: var(--accent);
     color: var(--text);
     border: 1px solid var(--inline);
     padding: 1px;
     font-family: monospace;
     cursor: pointer;
-    margin: 0 auto;
 }
 
 .main_btn:hover {

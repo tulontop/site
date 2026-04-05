@@ -62,10 +62,7 @@ const images = [
 ];
 
 const songs = [
-    "songs/City - Weiland.mp3",
-    "songs/Juvenile - Weiland.mp3",
-    "songs/Blue Bands - Weiland.mp3",
-    "songs/Demons - Weiland.mp3",
+    "songs/Lonely - Speaker Knockerz.mp3",
     "songs/[Cold] Offwhite - Uzi.mp3"
 ];
 

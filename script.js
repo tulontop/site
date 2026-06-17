@@ -1,77 +1,35 @@
-const password_required = false;
-const secret_password = "secretpassword67";
-
-const recaptcha_site_key = "6LcnvW4sAAAAABbWVUZjJoZDIBMoB6N8AmQeb9bw";
 const audio = document.getElementById('background_music');
-const captcha_screen = document.getElementById('captcha_screen');
 const splash_screen = document.getElementById('splash_screen');
 const main_content = document.getElementById('main_content');
-const correct_password = "tul";
-const password_input = document.getElementById('password_input');
 const enter_btn = document.getElementById('enter_btn');
 const main_image = document.querySelector('.main_image');
 
-splash_screen.style.display = 'none';
-main_content.style.display = 'none';
+const repo_contents_api = "https://api.github.com/repos/tulontop/site/contents";
+const image_exts = [".gif", ".png", ".jpg", ".jpeg", ".webp"];
+const song_exts = [".mp3"];
 
-function on_recaptcha_success(token) {
-    captcha_screen.style.display = 'none';
-    if (password_required) {
-        splash_screen.style.display = 'block';
-    } else {
-        unlock();
-    }
-}
-
-function render_recaptcha() {
-    if (typeof grecaptcha === 'undefined') {
-        setTimeout(render_recaptcha, 50);
-        return;
-    }
-    grecaptcha.ready(function () {
-        grecaptcha.render('recaptcha_widget', {
-            sitekey: recaptcha_site_key,
-            callback: on_recaptcha_success
+function fetch_file_list(folder, exts) {
+    return fetch(`${repo_contents_api}/${folder}`)
+        .then(res => res.json())
+        .then(list => Array.isArray(list)
+            ? list.filter(f => f.type === "file" && exts.some(ext => f.name.toLowerCase().endsWith(ext))).map(f => f.download_url)
+            : [])
+        .catch(e => {
+            console.log(`Failed to load ${folder} from GitHub:`, e);
+            return [];
         });
-    });
 }
-render_recaptcha();
 
-const images = [
-    "images/catesp.gif",
-    "images/dfxs.gif",
-    "images/driverinsideumcheat.gif",
-    "images/earsinthecaption.gif",
-    "images/kx code.gif",
-    "images/lilbaby.gif",
-    "images/minion.gif",
-    "images/nettspend-lazer.gif",
-    "images/pastecheat.gif",
-    "images/pastesuccess.gif",
-    "images/skiddedbutundetected.gif",
-    "images/skiddingleveltoday.gif",
-    "images/spityoshittroy.gif",
-    "images/thinkingcat.gif",
-    "images/werealldetected.gif",
-    "images/glazetul.gif",
-    "images/memorysense_esp.gif",
-    "images/nasa_saturn.gif",
-    "images/tuffasfuck.gif",
-    "images/che_vid.gif",
-    "images/che.gif"
-];
+const images_ready = fetch_file_list("images", image_exts);
+const songs_ready = fetch_file_list("songs", song_exts);
 
-const songs = [
-    "songs/Lonely - Speaker Knockerz.mp3",
-    "songs/[Cold] Offwhite - Uzi.mp3"
-];
-
-function set_random_image() {
+function set_random_image(images) {
+    if (images.length === 0) return;
     const random_idx = Math.floor(Math.random() * images.length);
     main_image.src = images[random_idx];
 }
 
-function set_random_audio() {
+function set_random_audio(songs) {
     if (songs.length === 0) return;
     const random_idx = Math.floor(Math.random() * songs.length);
     audio.src = songs[random_idx];
@@ -79,39 +37,12 @@ function set_random_audio() {
     audio.play().catch(e => console.log('Audio play failed:', e));
 }
 
-
-function check_password() {
-    const input = password_input.value;
-    if (input === correct_password) { unlock();
-    } else if (input === secret_password) {
-        password_input.value = "";
-        password_input.placeholder = "nice inspect element";
-        password_input.style.borderColor = "red";
-        setTimeout(() => {
-            password_input.placeholder = "password";
-            password_input.style.borderColor = "var(--inline)";
-        }, 2000);
-    } else {
-        password_input.value = "";
-        password_input.placeholder = "wrong password";
-        password_input.style.borderColor = "red";
-        setTimeout(() => {
-            password_input.placeholder = "password";
-            password_input.style.borderColor = "var(--inline)";
-        }, 2000);
-    }
-}
-
-function handle_key_press(event) {
-    if (event.key === 'Enter') check_password();
-}
-
-function unlock() {
-    set_random_audio();
+async function unlock() {
+    const [images, songs] = await Promise.all([images_ready, songs_ready]);
+    set_random_audio(songs);
     splash_screen.style.display = 'none';
     main_content.style.display = 'flex';
-    set_random_image();
+    set_random_image(images);
 }
 
-password_input.addEventListener('keypress', handle_key_press);
-enter_btn.addEventListener('click', check_password);
+enter_btn.addEventListener('click', unlock);
